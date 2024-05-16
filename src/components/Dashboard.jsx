@@ -97,9 +97,9 @@ const Dashboard = () => {
       <div className="h-screen bg-cover">
         <div className="bg-gray-100 bg-opacity-75 min-h-screen">
           <div className="container mx-auto py-8">
-            <h1 className="text-3xl font-bold text-purple mb-8">Dashboard</h1>
-            <button onClick={handleLogout} className='p-3 mr-3 bg-purple-500 text-white rounded-lg flex-row justify-end'>Logout</button>
-            <button className='bg-white-500 ring-1 p-3 rounded-lg ring-purple-500 hover:bg-purple-500 hover:ring-white  hover:text-white' onClick={resetData}>Reset Data</button>
+            <h1 className="text-3xl font-bold text-red mb-8">Dashboard</h1>
+            <button onClick={handleLogout} className='p-3 mr-3 bg-red-500 text-white rounded-lg flex-row justify-end'>Logout</button>
+            <button className='bg-white-500 ring-1 p-3 rounded-lg ring-red-500 hover:bg-red-500 hover:ring-white  hover:text-white' onClick={resetData}>Reset Data</button>
             <div>
               <h1 className='text-center text-3xl my-6'>Cancer death rate, 2000 to 2021</h1>
               <label htmlFor="file-upload" className='text-red-500'>* Please upload a .csv file </label> <br />
