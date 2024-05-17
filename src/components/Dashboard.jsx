@@ -14,98 +14,49 @@ const Dashboard = () => {
   const [legendColors, setLegendColors] = useState({}); // State to store legend colors
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const jsonData = await d3.json('data.json'); // Fetch data using d3.json
-        
-    //     // Filter data between years 2008 and 2019
-    //     const filteredData = jsonData.filter(item => item.Year >= 2000 && item.Year <= 2021);
-        
-    //     setData(filteredData);
-    //     setDefaultData(filteredData);
-
-    //     // Store unique country names
-    //     const countrySet = new Set(filteredData.map(item => item.Entity));
-
-    //     // Filter out non-EU countries
-    //     const EU_countries = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden"];
-    //     const EU_countries_set = new Set(EU_countries);
-    //     const EU_countries_data = [...countrySet].filter(country => EU_countries_set.has(country));
-
-        
-    //     // Sort countries based on total deaths
-    //     const sortedCountries = EU_countries_data.sort((a, b) => {
-    //       const totalDeathsA = filteredData.filter(item => item.Entity === a).reduce((acc, curr) => acc + curr["Age-standardized deaths that are from malignant neoplasms per 100,000 people, in both sexes aged all ages"], 0);
-    //       const totalDeathsB = filteredData.filter(item => item.Entity === b).reduce((acc, curr) => acc + curr["Age-standardized deaths that are from malignant neoplasms per 100,000 people, in both sexes aged all ages"], 0);
-    //       return totalDeathsB - totalDeathsA;
-    //     });
-
-    //     // Convert set to array and set state
-    //     setUniqueCountries(sortedCountries);
-
-    //     // Create legend colors based on selected countries
-    //     const colors = {};
-    //     sortedCountries.forEach((country, index) => {
-    //       colors[country] = d3.schemeCategory10[index % d3.schemeCategory10.length];
-    //     });
-        
-    //     setLegendColors(colors);
-      
-    //     console.log({ "unique_countries": sortedCountries });
-      
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
-
     const fetchData = async () => {
-    try {
-      const jsonData = await d3.json('data.json'); // Fetch data using d3.json
+      try {
+        const jsonData = await d3.json('data.json'); // Fetch data using d3.json
+        
+        // Filter data between years 2008 and 2019
+        const filteredData = jsonData.filter(item => item.Year >= 2000 && item.Year <= 2021);
+        
+        setData(filteredData);
+        setDefaultData(filteredData);
 
-      // Define the EU countries
-      const EU_countries = [
-        "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic",
-        "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary",
-        "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands",
-        "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden"
-      ];
+        // Store unique country names
+        const countrySet = new Set(filteredData.map(item => item.Entity));
 
-      // Filter data between years 2000 and 2021 and only for EU countries
-      const filteredData = jsonData.filter(item => {
-        return item.Year >= 2000 && item.Year <= 2021 && EU_countries.includes(item.Entity);
-      });
+        // Filter out non-EU countries
+        const EU_countries = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden"];
+        const EU_countries_set = new Set(EU_countries);
+        const EU_countries_data = [...countrySet].filter(country => EU_countries_set.has(country));
 
-      setData(filteredData);
-      setDefaultData(filteredData);
+        
+        // Sort countries based on total deaths
+        const sortedCountries = EU_countries_data.sort((a, b) => {
+          const totalDeathsA = filteredData.filter(item => item.Entity === a).reduce((acc, curr) => acc + curr["Age-standardized deaths that are from malignant neoplasms per 100,000 people, in both sexes aged all ages"], 0);
+          const totalDeathsB = filteredData.filter(item => item.Entity === b).reduce((acc, curr) => acc + curr["Age-standardized deaths that are from malignant neoplasms per 100,000 people, in both sexes aged all ages"], 0);
+          return totalDeathsB - totalDeathsA;
+        });
 
-      // Store unique country names
-      const countrySet = new Set(filteredData.map(item => item.Entity));
+        // Convert set to array and set state
+        setUniqueCountries(sortedCountries);
 
-      // Sort countries based on total deaths from malignant neoplasms
-      const sortedCountries = [...countrySet].sort((a, b) => {
-        const totalDeathsA = filteredData.filter(item => item.Entity === a).reduce((acc, curr) => acc + curr["Age-standardized deaths that are from malignant neoplasms per 100,000 people, in both sexes aged all ages"], 0);
-        const totalDeathsB = filteredData.filter(item => item.Entity === b).reduce((acc, curr) => acc + curr["Age-standardized deaths that are from malignant neoplasms per 100,000 people, in both sexes aged all ages"], 0);
-        return totalDeathsB - totalDeathsA;
-      });
-
-      // Set unique countries and colors
-      setUniqueCountries(sortedCountries);
-
-      // Create legend colors based on selected countries
-      const colors = {};
-      sortedCountries.forEach((country, index) => {
-        colors[country] = d3.schemeCategory10[index % d3.schemeCategory10.length];
-      });
-
-      setLegendColors(colors);
-
-      console.log({ "unique_countries": sortedCountries });
-
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
+        // Create legend colors based on selected countries
+        const colors = {};
+        sortedCountries.forEach((country, index) => {
+          colors[country] = d3.schemeCategory10[index % d3.schemeCategory10.length];
+        });
+        
+        setLegendColors(colors);
+      
+        console.log({ "unique_countries": sortedCountries });
+      
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
     fetchData();
   }, []);
