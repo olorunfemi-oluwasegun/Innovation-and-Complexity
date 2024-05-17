@@ -14,3 +14,7 @@ Custom Data Upload: Users can generate and download custom reports based on thei
 
 # Data Sources
 The dashboard utilizes publicly available cancer death rate data from : https://ourworldindata.org/grapher/cancer-death-rates-by-type
+
+# Technology Stack
+Frontend: React.js, D3.js for interactive data visualizations
+Backend: Node.js
