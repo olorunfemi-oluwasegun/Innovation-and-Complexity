@@ -1,8 +1,4 @@
-# React + Vite
+#Cancer Death Rate Data Visualization Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#Overview
+This project aims to create an interactive dashboard that visualizes cancer death rate data. The dashboard is designed to help users understand and analyze trends in cancer mortality, identify patterns across different demographics and regions, and provide valuable insights for healthcare professionals, researchers, and policymakers.
