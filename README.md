@@ -18,3 +18,9 @@ The dashboard utilizes publicly available cancer death rate data from : https://
 # Technology Stack
 Frontend: React.js, D3.js for interactive data visualizations
 Backend: Node.js
+
+# Instructions on how to run the application
+
+1. Go to "code" on https://github.com/olorunfemi-oluwasegun/Innovation-and-Complexity/tree/main
+2. Under code open codespaces
+3. 
